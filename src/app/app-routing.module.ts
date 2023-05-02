@@ -5,7 +5,15 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },  {
+    path: 'add-trucks',
+    loadChildren: () => import('./add-trucks/add-trucks.module').then( m => m.AddTrucksPageModule)
+  },
+  {
+    path: 'storagefirebase',
+    loadChildren: () => import('./storagefirebase/storagefirebase.module').then( m => m.StoragefirebasePageModule)
   }
+
 ];
 @NgModule({
   imports: [

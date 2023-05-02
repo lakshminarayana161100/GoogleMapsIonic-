@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "truckappionic": {
+      "hosting": {
+        "app": [
+          "truckappionic"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "truckappionic"
+  }
+}

@@ -1,23 +1,53 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
-    <ion-title>
-    Map Direction
-    </ion-title>
+ <ion-header>
+  <ion-toolbar>
+    <div style="display: flex;">
+
+      <ion-title>Attach New Load</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
+<br><br>
+
 <ion-content>
+  <div class="container"  >
 
-  <ion-item>
-    <ion-label position="floating">Form</ion-label>
-    <ion-input [(ngModel)]="sourceLocation"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">To</ion-label>
-    <ion-input [(ngModel)]="destinationLocation"></ion-input>
-  </ion-item>
-  <ion-button expand="full" color="secondary" (click)="calculateAndDisplayRoute()">Get Direction</ion-button>
 
-  <div #mapElement="" class="map"></div>
+    <div class="form-group">
+      <ion-input type="text" class="form-control" placeholder="  Enter Pick Up Location" [(ngModel)]="OriginLocation"
+        (ionInput)="GetOriginLocation(OriginLocation)" 
+        (ionClear)="ClearAutocomplete()"></ion-input>
+    </div>
 
-</ion-content>
+    <br>
+
+     <div class="form-group">
+      <ion-input type="text" class="form-control" placeholder="  Enter Drop Location" [(ngModel)]="DestinationLocation"
+        (ionInput)="GetDestinationLocation(DestinationLocation)" 
+        (ionClear)="ClearAutocomplete()"></ion-input>
+    </div> 
+
+    <br> 
+
+    <!--showing the list of address-->
+     <ion-list [hidden]="autocompleteItems.length == 0">
+      <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+        {{ item.description }}
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <div #map =''  style="height: 80%;"></div>
+</ion-content> 
+
+
+
+
+
+
+
+
+
+   
+ 

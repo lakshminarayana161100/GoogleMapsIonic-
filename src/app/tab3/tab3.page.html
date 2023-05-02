@@ -1,17 +1,67 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<!-- <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <div style="display: flex;">
+  
+        <ion-title>MAP</ion-title>
+      </div>
     </ion-toolbar>
   </ion-header>
+  <ion-content>
+    <ion-item>
+      <ion-label position="floating">Destination Location</ion-label>
+      <ion-input type="text" [(ngModel)]="destination"></ion-input>
+    </ion-item>
+  
+    <div #map id="map"></div>
+  </ion-content> -->
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
-</ion-content>
+
+  <ion-header>
+    <ion-toolbar color="primary">
+  
+  <!--create two input boxes -->
+  <ion-searchbar [(ngModel)]="OriginLocation"  placeholder="Search for a Origin"    (ionInput)="GetOriginLocation(OriginLocation)"   (ionClear)="ClearAutocomplete()"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="DestinationLocation" placeholder="Search for a Destination"   (ionInput)="GetDestinationLocation(DestinationLocation)"  (ionClear)="ClearAutocomplete()"></ion-searchbar>
+  <ion-button   (click)="calculateAndDisplayRoute()">Get Direction</ion-button>
+  
+  <ion-list >
+    <ion-item>
+  {{Distance}} <br>{{Dur}}
+    </ion-item>
+  </ion-list>
+    </ion-toolbar>
+    <!---->
+    <!--showing the list of address-->
+    <ion-list [hidden]="autocompleteItems.length == 0">
+      <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+        {{ item.description }}
+      </ion-item>
+    </ion-list>
+    <!-- <ion-row>    
+      <ion-col size="6">
+        <ion-text>Google & Ionic Map</ion-text>
+      </ion-col>
+      <ion-col  size="6">
+        <ion-button (click)="loadMap()" shape="round" fill="outline">
+          <ion-icon slot="start" name="locate"></ion-icon>
+            Where I Am
+          </ion-button>
+      </ion-col>
+    </ion-row>   -->
+  </ion-header>
+  <ion-content> 
+    <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+      <ion-fab-button (click)="ShowCords()" ion-fab color="tertiary">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+    <div class="map-wrapper" style="height: 100%;">      
+      <!-- <div id="map_center">
+        <ion-icon name="pin" size="large" color="danger"></ion-icon>      
+      </div> -->
+      <div #map =''  style="height: 50%;"></div>
+    </div>   
+   
+  </ion-content>
+  
+  
